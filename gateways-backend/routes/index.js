@@ -1,9 +1,31 @@
-var express = require('express');
+var express = require("express");
 var router = express.Router();
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+const gatewayController = require("../controllers/gatewayController.js");
+const peripheralController = require("../controllers/peripheralController.js");
 
 module.exports = router;
+
+// Gateway Routes
+router
+  .route("/gateway")
+  .get(gatewayController.getGateways)
+  .post(gatewayController.createGateway);
+
+router
+  .route("/gateway/:id")
+  .get(gatewayController.getGatewayById)
+  .put(gatewayController.updateGateway)
+  .delete(gatewayController.deleteGateway);
+
+// Peripheral Routes
+router
+  .route("/peripheral")
+  .get(peripheralController.getGateways)
+  .post(peripheralController.createGateway);
+
+router
+  .route("/peripheral/:id")
+  .get(peripheralController.getGatewayById)
+  .put(peripheralController.updateGateway)
+  .delete(peripheralController.deleteGateway);

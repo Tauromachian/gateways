@@ -5,7 +5,6 @@ const DB_URI = "mongodb://localhost:27017/gateway"; // Change this to your datab
 mongoose.connect(DB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-  useCreateIndex: true,
 });
 
 const db = mongoose.connection;

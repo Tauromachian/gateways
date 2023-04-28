@@ -21,11 +21,11 @@ router
 // Peripheral Routes
 router
   .route("/peripheral")
-  .get(peripheralController.getGateways)
-  .post(peripheralController.createGateway);
+  .get(peripheralController.getPeripherals)
+  .post(peripheralController.createPeripheral);
 
 router
   .route("/peripheral/:id")
-  .get(peripheralController.getGatewayById)
-  .put(peripheralController.updateGateway)
-  .delete(peripheralController.deleteGateway);
+  .get(peripheralController.getPeripheralById)
+  .put(peripheralController.updatePeripheral)
+  .delete(peripheralController.deletePeripheral);

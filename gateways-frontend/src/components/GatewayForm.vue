@@ -5,17 +5,17 @@
     :title="$t('read.form_name')"
   >
     <v-text-field
-      v-model="form.T1IAE"
+      v-model="form.name"
       label="Name"
       :rules="[rules.required()]"
     />
     <v-text-field
-      v-model="form.T2IAE"
+      v-model="form.serialNumber"
       label="Serial number"
       :rules="[rules.required(), rules.number()]"
     />
     <v-text-field
-      v-model="form.T3IAE"
+      v-model="form.ip"
       label="IP"
       :rules="[rules.required(), rules.ip()]"
     />

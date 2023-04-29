@@ -3,35 +3,6 @@
     <v-col cols="auto">
       <slot name="actions-prepend" />
 
-      <v-dialog
-        v-if="!disable.hideColumns && !disable.details"
-        v-model="columnSelectListDialog"
-        width="500"
-      >
-        <template #activator>
-          <v-btn
-            icon="mdi-eye"
-            @click="columnSelectListDialog = true"
-            color="primary"
-          >
-          </v-btn>
-        </template>
-
-        <v-card>
-          <gen-column-select-list
-            v-model="visibleColumnsComputed"
-            :columns="columnDefs"
-          />
-
-          <v-card-actions>
-            <v-spacer />
-            <v-btn color="primary" @click="columnSelectListDialog = false">
-              {{ $t("button.actions.accept") }}
-            </v-btn>
-          </v-card-actions>
-        </v-card>
-      </v-dialog>
-
       <v-btn
         class="ml-1"
         v-if="!disable?.edit"
@@ -57,7 +28,6 @@
 
 <script>
 export default {
-  name: "Toolbar",
   props: {
     columnDefs: { type: Array, required: true },
     visibleColumns: { type: Array, required: true },

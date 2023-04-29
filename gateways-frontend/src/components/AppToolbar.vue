@@ -12,7 +12,7 @@
       >
       </v-btn>
 
-      <gen-delete-confirmation-dialog
+      <dialog-delete-confirmation
         class="mx-1"
         v-if="!disable?.delete"
         v-model="dialogDelete"
@@ -27,7 +27,12 @@
 </template>
 
 <script>
+import DialogDeleteConfirmation from "./DialogDeleteConfirmation.vue";
+
 export default {
+  components: {
+    DialogDeleteConfirmation,
+  },
   props: {
     columnDefs: { type: Array, required: true },
     selectedRows: { type: Array, default: () => [] },

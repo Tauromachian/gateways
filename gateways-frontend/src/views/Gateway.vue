@@ -2,18 +2,17 @@
   <v-container fluid>
     <v-card class="mt-4">
       <v-card-text>
-        <gen-toolbar
-          v-model:visible-columns="visibleColumns"
+        <app-toolbar
           :column-defs="headers"
           @plus-click="openFormForInsert"
           @edit-click="openFormForEdit"
         >
-        </gen-toolbar>
+        </app-toolbar>
 
         <easy-data-table
           class="mt-3"
           v-model:items-selected="selectedRows"
-          :headers="visibleHeaders"
+          :headers="headers"
           :items="gateways"
           :loading="loading"
           single-select
@@ -31,7 +30,7 @@
       </v-card-text>
     </v-card>
 
-    <gen-btn-add @click="openFormForInsert"></gen-btn-add>
+    <btn-add @click="openFormForInsert"></btn-add>
 
     <v-dialog v-model="formDialog" width="400">
       <gateway-form
@@ -48,9 +47,11 @@
 import { mapActions } from "pinia";
 import { useNotificationsStore } from "@/stores/notifications";
 
-import { getGateways, addGateway, updateGateway } from "@/services/app/gateway";
+import { getGateways, addGateway, updateGateway } from "@/services/gateway";
 
-import GatewayForm from "@/components/app/GatewayForm.vue";
+import GatewayForm from "@/components/GatewayForm.vue";
+import AppToolbar from "@/components/AppToolbar.vue";
+import BtnAdd from "@/components/BtnAdd.vue";
 
 import { genericNotifications } from "@/utils/genericNotifications";
 
@@ -58,7 +59,9 @@ export default {
   name: "Gateway",
   middleware: "auth",
   components: {
+    AppToolbar,
     GatewayForm,
+    BtnAdd,
   },
   data() {
     return {

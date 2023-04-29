@@ -2,18 +2,17 @@
   <v-container fluid>
     <v-card class="mt-4">
       <v-card-text>
-        <gen-toolbar
-          v-model:visible-columns="visibleColumns"
+        <app-toolbar
           :column-defs="headers"
           @plus-click="openFormForInsert"
           @edit-click="openFormForEdit"
         >
-        </gen-toolbar>
+        </app-toolbar>
 
         <easy-data-table
           class="mt-3"
           v-model:items-selected="selectedRows"
-          :headers="visibleHeaders"
+          :headers="headers"
           :items="peripherals"
           :loading="loading"
           single-select
@@ -31,7 +30,7 @@
       </v-card-text>
     </v-card>
 
-    <gen-btn-add @click="openFormForInsert"></gen-btn-add>
+    <btn-add @click="openFormForInsert"></btn-add>
 
     <v-dialog v-model="formDialog" width="400">
       <peripheral-form
@@ -52,9 +51,11 @@ import {
   getPeripherals,
   addPeripheral,
   updatePeripheral,
-} from "@/services/app/peripheral";
+} from "@/services/peripheral";
 
-import PeripheralForm from "@/components/app/PeripheralForm.vue";
+import PeripheralForm from "@/components/PeripheralForm.vue";
+import AppToolbar from "@/components/AppToolbar.vue";
+import BtnAdd from "@/components/BtnAdd.vue";
 
 import { genericNotifications } from "@/utils/genericNotifications";
 
@@ -62,7 +63,9 @@ export default {
   name: "Peripheral",
   middleware: "auth",
   components: {
+    AppToolbar,
     PeripheralForm,
+    BtnAdd,
   },
   data() {
     return {

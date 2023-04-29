@@ -1,4 +1,4 @@
-const genericNotifications = {
+export const genericNotifications = {
   selectRowBeforeUpdate: {
     message: "Select a row before updating please",
     color: "info",

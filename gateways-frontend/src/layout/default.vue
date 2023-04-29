@@ -5,8 +5,9 @@
     <core-drawer :links="links" />
 
     <default-toolbar @toggle-drawer="toggleDrawer"></default-toolbar>
-
-    <default-view></default-view>
+    <v-container>
+      <default-view></default-view>
+    </v-container>
   </v-main>
 </template>
 

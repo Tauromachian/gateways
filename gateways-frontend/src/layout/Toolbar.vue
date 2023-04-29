@@ -34,25 +34,17 @@
       </v-list>
     </v-menu>
 
-    <gen-account-button-menu @logout="logout" :user="user" />
-
     <div class="mr-2" />
   </v-app-bar>
 </template>
 
 <script>
 import { mapActions, mapState } from "pinia";
-import { useAuthStore } from "@/stores/auth";
 
 export default {
   name: "Toolbar",
 
-  computed: {
-    ...mapState(useAuthStore, ["user"]),
-  },
-
   methods: {
-    ...mapActions(useAuthStore, ["logout"]),
     toggleDrawer() {
       this.$emit("toggle-drawer");
     },

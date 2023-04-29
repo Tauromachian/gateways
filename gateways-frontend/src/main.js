@@ -6,6 +6,6 @@ import { registerPlugins } from "@/plugins";
 
 const app = createApp(App);
 
-app.mount("#app");
-
 registerPlugins(app);
+
+app.mount("#app");

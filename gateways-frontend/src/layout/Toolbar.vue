@@ -2,10 +2,6 @@
   <v-app-bar id="core-toolbar" app flat :order="1">
     <v-app-bar-nav-icon @click="toggleDrawer" />
 
-    <v-toolbar-title v-if="$vuetify.display.mdAndUp">
-      {{ $route.name }}
-    </v-toolbar-title>
-
     <v-spacer />
 
     <!-- Right side icons -->

@@ -4,6 +4,8 @@ import App from "./App.vue";
 
 import { registerPlugins } from "@/plugins";
 
-registerPlugins(app);
+const app = createApp(App);
 
-createApp(App).mount("#app");
+app.mount("#app");
+
+registerPlugins(app);

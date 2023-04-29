@@ -2,17 +2,17 @@ export default [
   {
     path: "/",
     redirect: { name: "gateways" },
-    component: () => import("@/layouts/default"),
+    component: () => import("@/layout/default"),
     children: [
       {
         path: "gateways",
         name: "gateways",
-        component: () => import("@/views/app/Gateway"),
+        component: () => import("@/views/Gateway"),
       },
       {
         path: "peripherals",
         name: "peripherals",
-        component: () => import("@/views/app/Peripheral"),
+        component: () => import("@/views/Peripheral"),
       },
     ],
   },

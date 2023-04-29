@@ -17,7 +17,7 @@ import { useAppStore } from "@/stores/app";
 
 import DefaultToolbar from "./Toolbar.vue";
 import DefaultView from "./View.vue";
-import NotificationsHandler from "@/components/generic/NotificationsHandler.vue";
+import NotificationsHandler from "@/components/NotificationsHandler.vue";
 import CoreDrawer from "./Drawer.vue";
 
 export default {

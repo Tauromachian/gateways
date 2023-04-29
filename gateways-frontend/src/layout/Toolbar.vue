@@ -3,7 +3,7 @@
     <v-app-bar-nav-icon @click="toggleDrawer" />
 
     <v-toolbar-title v-if="$vuetify.display.mdAndUp">
-      {{ $t("route." + $route.name) }}
+      {{ $route.name }}
     </v-toolbar-title>
 
     <v-spacer />
@@ -27,9 +27,7 @@
           align="center"
           :to="{ name: 'notifications' }"
         >
-          <v-list-item-title>
-            {{ $t("button.view_all") }}
-          </v-list-item-title>
+          <v-list-item-title> View all </v-list-item-title>
         </v-list-item>
       </v-list>
     </v-menu>

@@ -16,7 +16,7 @@
         <template #prepend>
           <v-icon>{{ link.icon }}</v-icon>
         </template>
-        <v-list-item-title>{{ $t(link.text) }} </v-list-item-title>
+        <v-list-item-title>{{ link.text }} </v-list-item-title>
       </v-list-item>
     </v-list>
   </v-navigation-drawer>

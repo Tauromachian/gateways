@@ -1,7 +1,7 @@
 export default [
   {
     path: "/",
-    redirect: { name: "institutions" },
+    redirect: { name: "gateways" },
     component: () => import("@/layouts/default"),
     children: [
       {

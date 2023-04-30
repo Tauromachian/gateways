@@ -84,7 +84,6 @@ export default {
         uid: "",
         vendor: "",
         status: "",
-        dateCreated: "",
         gatewayId: "",
       },
     };

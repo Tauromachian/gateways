@@ -1,5 +1,5 @@
 <template>
-  <app-form ref="form" @submit="() => $emit('submit')" title="Gateway Form">
+  <app-form ref="form" title="Gateway Form">
     <v-text-field
       v-model="form.name"
       label="Name"

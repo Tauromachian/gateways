@@ -1,9 +1,5 @@
 <template>
-  <app-form
-    ref="form"
-    @submit="() => $emit('submit')"
-    :title="$t('read.form_name')"
-  >
+  <app-form ref="form" title="Peripheral Form">
     <v-text-field v-model="form.uid" label="UID" :rules="[rules.required()]" />
     <v-text-field
       v-model="form.vendor"

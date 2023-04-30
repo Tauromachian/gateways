@@ -115,7 +115,7 @@ export default {
           //   value: 'TLMT3IAE'
         },
         {
-          text: `Peripheral ID`,
+          text: `Gateway ID`,
           value: "gatewayId",
           //   value: 'TLMT3IAE'
         },

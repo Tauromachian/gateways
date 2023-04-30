@@ -95,17 +95,14 @@ export default {
           text: `name`,
           value: "name",
           checkboxSelection: true,
-          //   value: 'TLMT1IAE'
         },
         {
           text: `serialNumber`,
           value: "serialNumber",
-          //   value: 'TLMT2IAE'
         },
         {
           text: `IP`,
           value: "ipv4",
-          //   value: 'TLMT3IAE'
         },
       ];
     },

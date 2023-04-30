@@ -34,7 +34,6 @@ export default {
     DialogDeleteConfirmation,
   },
   props: {
-    columnDefs: { type: Array, required: true },
     selectedRows: { type: Array, default: () => [] },
     isRowSelected: { type: Boolean, default: false },
     deleteDialogButton: { type: Boolean, default: false },

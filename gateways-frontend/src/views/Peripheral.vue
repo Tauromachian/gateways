@@ -3,7 +3,6 @@
     <v-card class="mt-4">
       <v-card-text>
         <app-toolbar
-          :column-defs="headers"
           @plus-click="openFormForInsert"
           @edit-click="openFormForEdit"
         >

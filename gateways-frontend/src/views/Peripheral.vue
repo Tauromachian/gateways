@@ -97,27 +97,22 @@ export default {
           text: `UID`,
           value: "uid",
           checkboxSelection: true,
-          //   value: 'TLMT1IAE'
         },
         {
           text: `Vendor`,
           value: "vendor",
-          //   value: 'TLMT2IAE'
         },
         {
           text: `Status`,
           value: "status",
-          //   value: 'TLMT3IAE'
         },
         {
           text: `Date created`,
           value: "dateCreated",
-          //   value: 'TLMT3IAE'
         },
         {
           text: `Gateway ID`,
           value: "gatewayId",
-          //   value: 'TLMT3IAE'
         },
       ];
     },

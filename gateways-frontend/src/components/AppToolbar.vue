@@ -12,6 +12,15 @@
       >
       </v-btn>
 
+      <v-btn
+        class="ml-1"
+        v-if="!disable?.delete"
+        color="primary"
+        @click="isRowSelected && (dialogDelete = true)"
+        icon="mdi-delete-outline"
+      >
+      </v-btn>
+
       <dialog-delete-confirmation
         class="mx-1"
         v-if="!disable?.delete"
@@ -34,7 +43,6 @@ export default {
     DialogDeleteConfirmation,
   },
   props: {
-    selectedRows: { type: Array, default: () => [] },
     isRowSelected: { type: Boolean, default: false },
     deleteDialogButton: { type: Boolean, default: false },
     disable: {

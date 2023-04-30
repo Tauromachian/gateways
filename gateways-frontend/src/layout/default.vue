@@ -35,12 +35,12 @@ export default {
       drawer: false,
       links: [
         {
-          to: { name: "gateways" },
+          to: { name: "gateway" },
           icon: "mdi-domain",
           text: "Gateways",
         },
         {
-          to: { name: "peripherals" },
+          to: { name: "peripheral" },
           icon: "mdi-view-dashboard",
           text: "Peripherals",
         },

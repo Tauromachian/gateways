@@ -4,8 +4,9 @@
       <v-card-text>
         <app-toolbar
           @click:edit="openFormForEdit"
-          @click:delete-button="isRowSelected('delete')"
+          @click:delete-button="checkRowSelected('delete')"
           @click:delete="removeGateway"
+          :is-row-selected="isRowSelected"
         >
         </app-toolbar>
 
@@ -47,7 +48,12 @@
 import { mapActions } from "pinia";
 import { useNotificationsStore } from "@/stores/notifications";
 
-import { getGateways, addGateway, updateGateway } from "@/services/gateway";
+import {
+  getGateways,
+  addGateway,
+  updateGateway,
+  deleteGateway,
+} from "@/services/gateway";
 
 import GatewayForm from "@/components/GatewayForm.vue";
 import AppToolbar from "@/components/AppToolbar.vue";
@@ -68,6 +74,7 @@ export default {
       formDialog: false,
       loading: false,
       isFormUpdating: false,
+      isRowSelected: false,
 
       selectedRows: [],
       itemsPerPage: 10,
@@ -133,15 +140,18 @@ export default {
     },
 
     openFormForEdit() {
-      if (!this.isRowSelected("update")) return;
+      if (!this.checkRowSelected("update")) return;
 
       this.fillForm();
       this.isFormUpdating = true;
       this.formDialog = true;
     },
 
-    isRowSelected(type) {
-      if (this.selectedRows.length !== 0) return true;
+    checkRowSelected(type) {
+      if (this.selectedRows.length !== 0) {
+        this.isRowSelected = true;
+        return true;
+      }
 
       this.addNotification(
         type === "delete"
@@ -191,17 +201,11 @@ export default {
 
     async removeGateway() {
       try {
-        await deletePlan(this.selectedRows[0].id);
+        await deleteGateway(this.selectedRows[0].id);
         this.loadData();
-        this.addNotification({
-          message: this.$t("notifications.successful_delete"),
-          color: "success",
-        });
+        this.addNotification(genericNotifications.successfulDelete);
       } catch (error) {
-        this.addNotification({
-          message: this.$t("notifications.error_at_delete"),
-          color: "error",
-        });
+        this.addNotification(genericNotifications.errorDelete);
       }
     },
   },

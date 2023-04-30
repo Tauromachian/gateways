@@ -4,8 +4,9 @@
       <v-card-text>
         <app-toolbar
           @click:edit="openFormForEdit"
-          @click:delete-button="isRowSelected('delete')"
+          @click:delete-button="checkRowSelected('delete')"
           @click:delete="removePeripheral"
+          :is-row-selected="isRowSelected"
         >
         </app-toolbar>
 
@@ -51,6 +52,7 @@ import {
   getPeripherals,
   addPeripheral,
   updatePeripheral,
+  deletePeripheral,
 } from "@/services/peripheral";
 
 import PeripheralForm from "@/components/PeripheralForm.vue";
@@ -72,6 +74,7 @@ export default {
       formDialog: false,
       loading: false,
       isFormUpdating: false,
+      isRowSelected: false,
 
       selectedRows: [],
       itemsPerPage: 10,
@@ -149,15 +152,18 @@ export default {
     },
 
     openFormForEdit() {
-      if (!this.isRowSelected("update")) return;
+      if (!this.checkRowSelected("update")) return;
 
       this.fillForm();
       this.isFormUpdating = true;
       this.formDialog = true;
     },
 
-    isRowSelected(type) {
-      if (this.selectedRows.length !== 0) return true;
+    checkRowSelected(type) {
+      if (this.selectedRows.length !== 0) {
+        this.isRowSelected = true;
+        return true;
+      }
 
       this.addNotification(
         type === "delete"
@@ -207,17 +213,11 @@ export default {
 
     async removePeripheral() {
       try {
-        await deletePlan(this.selectedRows[0].id);
+        await deletePeripheral(this.selectedRows[0].id);
         this.loadData();
-        this.addNotification({
-          message: this.$t("notifications.successful_delete"),
-          color: "success",
-        });
+        this.addNotification(genericNotifications.successfulDelete);
       } catch (error) {
-        this.addNotification({
-          message: this.$t("notifications.error_at_delete"),
-          color: "error",
-        });
+        this.addNotification(genericNotifications.errorDelete);
       }
     },
   },

@@ -11,7 +11,7 @@
       :rules="[rules.required(), rules.number()]"
     />
     <v-text-field
-      v-model="form.ip"
+      v-model="form.ipv4"
       label="IP"
       :rules="[rules.required(), rules.ip()]"
     />

@@ -158,14 +158,11 @@ export default {
     isRowSelected(type) {
       if (this.selectedRows.length !== 0) return true;
 
-      this.addNotification({
-        message: this.$t(
-          type === "delete"
-            ? genericNotifications.selectRowBeforeDelete
-            : genericNotifications.selectRowBeforeUpdate
-        ),
-        color: "info",
-      });
+      this.addNotification(
+        type === "delete"
+          ? genericNotifications.selectRowBeforeDelete
+          : genericNotifications.selectRowBeforeUpdate
+      );
 
       return false;
     },

@@ -17,7 +17,7 @@
       :disabled="loadingButtons"
       @click="() => $emit('click:cancel')"
     >
-      {{ $t("button.actions.cancel") }}
+      Cancel
     </v-btn>
   </div>
 </template>
@@ -28,7 +28,7 @@ export default {
   props: {
     submitButtonTitle: {
       type: String,
-      default: "Aceptar",
+      default: "Accept",
     },
     submitButtonColor: {
       type: String,

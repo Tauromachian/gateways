@@ -163,6 +163,7 @@ export default {
 
       try {
         await addGateway(this.form);
+        this.loadData();
         this.formDialog = false;
         this.addNotification(genericNotifications.successfulInsert);
       } catch (err) {
@@ -176,6 +177,7 @@ export default {
       this.loading = true;
       try {
         await updateGateway(this.selectedRows[0].id, this.form);
+        this.loadData();
         this.formDialog = false;
         this.addNotification(genericNotifications.successfulUpdate);
       } catch (err) {

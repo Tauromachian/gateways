@@ -16,7 +16,7 @@
         class="ml-1"
         v-if="!disable?.delete"
         color="primary"
-        @click="isRowSelected && (dialogDelete = true)"
+        @click="onDeleteButtonClicked"
         icon="mdi-delete-outline"
       >
       </v-btn>
@@ -25,9 +25,7 @@
         class="mx-1"
         v-if="!disable?.delete"
         v-model="dialogDelete"
-        :isAllowedToOpen="isRowSelected"
-        @click:delete-button="onDeleteButtonClicked"
-        @delete="deleteRow"
+        @click:accept="onDelete"
       />
 
       <slot name="actions-append" />
@@ -64,25 +62,15 @@ export default {
     };
   },
 
-  computed: {
-    visibleColumnsComputed: {
-      get() {
-        return this.visibleColumns;
-      },
-      set(val) {
-        this.$emit("update:visibleColumns", val);
-      },
-    },
-  },
-
   methods: {
+    onUpdateButtonClicked() {
+      this.$emit("click:edit");
+    },
     onDeleteButtonClicked() {
+      this.isRowSelected && (this.dialogDelete = true);
       this.$emit("click:delete-button");
     },
-    onUpdateButtonClicked() {
-      this.$emit("click:update-button");
-    },
-    deleteRow() {
+    onDelete() {
       this.$emit("click:delete");
     },
   },

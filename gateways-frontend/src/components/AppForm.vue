@@ -8,7 +8,7 @@
       <v-form ref="form" @submit.prevent="onSubmit">
         <slot> </slot>
         <slot name="actions">
-          <gen-form-actions
+          <form-actions
             class="px-0"
             :enable-cancel="enableCancel"
             @click:submit="onSubmit"
@@ -21,8 +21,13 @@
 </template>
 
 <script>
+import FormActions from "./FormActions.vue";
+
 export default {
   name: "Form",
+  components: {
+    FormActions,
+  },
   props: {
     title: {
       type: String,

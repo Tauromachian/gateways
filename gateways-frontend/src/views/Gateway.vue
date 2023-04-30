@@ -184,7 +184,7 @@ export default {
     async updateGateway() {
       this.loading = true;
       try {
-        await updateGateway(this.selectedRows[0].id, this.form);
+        await updateGateway(this.selectedRows[0]._id, this.form);
         this.loadData();
         this.formDialog = false;
         this.addNotification(genericNotifications.successfulUpdate);
@@ -201,7 +201,7 @@ export default {
 
     async removeGateway() {
       try {
-        await deleteGateway(this.selectedRows[0].id);
+        await deleteGateway(this.selectedRows[0]._id);
         this.loadData();
         this.addNotification(genericNotifications.successfulDelete);
       } catch (error) {

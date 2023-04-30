@@ -196,7 +196,7 @@ export default {
     async updatePeripheral() {
       this.loading = true;
       try {
-        await updatePeripheral(this.selectedRows[0].id, this.form);
+        await updatePeripheral(this.selectedRows[0]._id, this.form);
         this.loadData();
         this.formDialog = false;
         this.addNotification(genericNotifications.successfulUpdate);
@@ -213,7 +213,7 @@ export default {
 
     async removePeripheral() {
       try {
-        await deletePeripheral(this.selectedRows[0].id);
+        await deletePeripheral(this.selectedRows[0]._id);
         this.loadData();
         this.addNotification(genericNotifications.successfulDelete);
       } catch (error) {

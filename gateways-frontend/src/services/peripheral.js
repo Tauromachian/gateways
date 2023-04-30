@@ -20,7 +20,7 @@ export async function addPeripheral(form) {
 }
 
 export async function updatePeripheral(id, form) {
-  const { data } = await appApi.patch(`peripheral/${id}`, form);
+  const { data } = await appApi.put(`peripheral/${id}`, form);
   return data;
 }
 

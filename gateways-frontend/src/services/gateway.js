@@ -20,7 +20,7 @@ export async function addGateway(form) {
 }
 
 export async function updateGateway(id, form) {
-  const { data } = await appApi.patch(`gateway/${id}`, form);
+  const { data } = await appApi.put(`gateway/${id}`, form);
   return data;
 }
 

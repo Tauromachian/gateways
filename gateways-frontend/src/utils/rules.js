@@ -23,46 +23,43 @@ export function optionalFieldHelper(rules) {
   };
 }
 
-export function required(message = "Este valor es requerido.") {
+export function required(message = "This value is required.") {
   return (v) => !!v || message;
 }
 
-export function number(message = "Este campo debe ser un número.") {
+export function number(message = "This field should be a number.") {
   return (v) => isNumber(v) || message;
 }
 
-export function phone(message = "El número de teléfono no es válido") {
+export function phone(message = "The phone number is not valid.") {
   return (v) => isPhone(v) || message;
 }
 
-export function email(message = "El email no es válido") {
+export function email(message = "The email is not valid") {
   return (v) => isEmail(v) || message;
 }
 
-export function sentence(message = "El formato no es válido") {
+export function sentence(message = "The format is not valid.") {
   return (v) => isSentence(v) || message;
 }
 
-export function confirm(
-  toConfirm,
-  message = "Los valores no son equivalentes"
-) {
+export function confirm(toConfirm, message = "The value is not equal") {
   return (v) => v === toConfirm || message;
 }
 
 export function min(min = 6, message) {
   const finalMessage = message
     ? message
-    : `Cantidad mínima de ${min} letras requeridas`;
+    : `A minimun amount of ${min} letters is required`;
 
   return (v) => v.length >= min || finalMessage;
 }
 
 export function password() {
   return (v) => {
-    if (!v) return "La contraseña es requerida";
+    if (!v) return "Password required";
 
-    if (v.length < 8) return "La contraseña debe tener 8 caracteres o más";
+    if (v.length < 8) return "The password should have 8 or more characters";
 
     return true;
   };

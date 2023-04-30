@@ -3,8 +3,9 @@
     <v-card class="mt-4">
       <v-card-text>
         <app-toolbar
-          @plus-click="openFormForInsert"
-          @edit-click="openFormForEdit"
+          @click:edit="openFormForEdit"
+          @click:delete-button="isRowSelected('delete')"
+          @click:delete="removeGateway"
         >
         </app-toolbar>
 
@@ -186,6 +187,22 @@ export default {
 
     fillForm() {
       this.form = { ...this.selectedRows[0] };
+    },
+
+    async removeGateway() {
+      try {
+        await deletePlan(this.selectedRows[0].id);
+        this.loadData();
+        this.addNotification({
+          message: this.$t("notifications.successful_delete"),
+          color: "success",
+        });
+      } catch (error) {
+        this.addNotification({
+          message: this.$t("notifications.error_at_delete"),
+          color: "error",
+        });
+      }
     },
   },
 };

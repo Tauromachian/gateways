@@ -1,14 +1,8 @@
-module.exports = {
-  preset: "ts-jest",
-  testEnvironment: "jsdom",
-  moduleFileExtensions: ["js", "vue"],
-  moduleNameMapper: {
-    "^@/(.*)": "<rootDir>/$1",
-  },
-  transform: {
-    "^.+\\.(js)$": "babel-jest",
-    ".+\\.(css|scss|png|jpg|svg)$": "jest-transform-stub",
-    ".*\\.(vue)$": "@vue/vue3-jest",
-  },
-  transformIgnorePatterns: ["node_modules/(?!(nuxt3|unenv))"],
+export default {
+  preset: "vite-jest",
+  testMatch: [
+    "**/tests/unit/**/*.spec.?(m)js?(x)",
+    "**/__tests__/*.?(m)js?(x)",
+  ],
+  testEnvironment: "jest-environment-jsdom",
 };

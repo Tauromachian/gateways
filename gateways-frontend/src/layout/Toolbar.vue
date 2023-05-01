@@ -4,11 +4,6 @@
 
     <v-spacer />
 
-    <!-- Right side icons -->
-    <v-btn icon to="/">
-      <v-icon> mdi-home </v-icon>
-    </v-btn>
-
     <v-menu left bottom offset-x offset-y>
       <v-list dense>
         <v-list-item

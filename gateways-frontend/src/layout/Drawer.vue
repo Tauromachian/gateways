@@ -1,7 +1,12 @@
 <template>
   <v-navigation-drawer v-model="internalDrawer" app :order="0">
-    <div class="d-flex px-16 py-2">
-      <img src="/logo2.svg" />
+    <div class="d-flex justify-center align-center py-2">
+      <img
+        height="80"
+        width="80"
+        src="@/assets/gateway-logo-removebg-preview.png"
+      />
+      <h1 class="mr-9">Gateways</h1>
     </div>
 
     <v-divider />

@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
 
+const ipValidator = require("../utils/ipValidator");
+
 const gatewaySchema = new mongoose.Schema({
   serialNumber: {
     type: String,
@@ -13,6 +15,7 @@ const gatewaySchema = new mongoose.Schema({
   ipv4: {
     type: String,
     required: true,
+    validate: [ipValidator, "Invalid IP address"],
   },
   peripheralDevices: [
     {

@@ -1,13 +1,15 @@
-# Installation
+# Gateways frontend
 
-## Install dependencies
+## Installation
+
+### Install dependencies
 
 `yarn install`
 
-## Run development server
+### Run development server
 
 `yarn dev`
 
-## Build for production
+### Build for production
 
 `yarn build`

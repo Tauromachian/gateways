@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const peripheralSchema = new mongoose.Schema({
-  uid: { type: String, required: true, unique: true },
+  uid: { type: Number, required: true, unique: true },
   vendor: { type: String, required: true },
   status: { type: Boolean, required: true },
   dateCreated: {

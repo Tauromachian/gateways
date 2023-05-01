@@ -14,7 +14,7 @@
           class="mt-3"
           v-model:items-selected="selectedRows"
           :headers="headers"
-          :items="peripherals"
+          :items="tableData"
           :loading="loading"
           single-select
           show-select
@@ -60,6 +60,7 @@ import AppToolbar from "@/components/AppToolbar.vue";
 import BtnAdd from "@/components/BtnAdd.vue";
 
 import { genericNotifications } from "@/utils/genericNotifications";
+import { peripheralStatusMapper } from "@/utils/boolean-mapper";
 
 export default {
   name: "Peripheral",
@@ -90,6 +91,12 @@ export default {
   },
 
   computed: {
+    tableData() {
+      return this.peripherals.map((peripheral) => ({
+        ...peripheral,
+        status: peripheralStatusMapper(peripheral.status),
+      }));
+    },
     headers() {
       return [
         {

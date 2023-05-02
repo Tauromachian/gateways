@@ -7,7 +7,7 @@ WORKDIR /app
 COPY package.json yarn.lock ./
 
 # Install project dependencies
-RUN npm install -g yarn && yarn global add http-server && yarn install
+RUN yarn global add http-server && yarn install
 
 # Copy project files and folders to the current working directory (i.e. 'app' folder)
 COPY . .

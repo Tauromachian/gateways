@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 
-const DB_URI = "mongodb://localhost:27017/gateway"; // Change this to your database URI
+const MONGO_URI = process.env.MONGO_URI;
 
-mongoose.connect(DB_URI, {
+mongoose.connect(MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });

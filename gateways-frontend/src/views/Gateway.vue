@@ -1,5 +1,7 @@
 <template>
   <v-container fluid>
+    <h1>Gateways</h1>
+
     <v-card class="mt-4">
       <v-card-text>
         <app-toolbar

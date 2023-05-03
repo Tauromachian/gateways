@@ -3,7 +3,7 @@ const Gateway = require("../models/gateway");
 // GET all gateways
 exports.getGateways = async (req, res, next) => {
   try {
-    const gateways = await Gateway.find().populate("peripheralDevices");
+    const gateways = await Gateway.find();
     res.json(gateways);
   } catch (err) {
     next(err);

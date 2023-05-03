@@ -4,7 +4,7 @@ FROM node:18-alpine as build-stage
 WORKDIR /app
 
 # Copy both 'package.json' and 'package-lock.json' (if available)
-COPY package.json yarn.lock ./
+COPY package.json yarn.lock .env.production ./
 
 # Install project dependencies
 RUN yarn global add http-server && yarn install

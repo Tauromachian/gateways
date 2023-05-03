@@ -29,4 +29,4 @@ services:
     ports:
       - "8080:80"
     environment:
-      VITE_HOST_DIR: http://backend:3000
+      VITE_HOST_DIR: http://191.96.31.153:3000

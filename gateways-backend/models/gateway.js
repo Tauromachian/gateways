@@ -17,12 +17,10 @@ const gatewaySchema = new mongoose.Schema({
     required: true,
     validate: [ipValidator, "Invalid IP address"],
   },
-  peripheralDevices: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Peripheral",
-    },
-  ],
+  peripheralDevices: {
+    type: [mongoose.Schema.Types.ObjectId],
+    ref: "Peripheral",
+  },
 });
 
 const Gateway = mongoose.model("Gateway", gatewaySchema);

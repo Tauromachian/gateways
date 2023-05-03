@@ -1,4 +1,4 @@
-export function ip(message = "El formato del ip no es válido") {
+export function ip(message = "The IP is not valid") {
   return (v) => {
     const { ip, mask } = splitIpFromMask(v);
 

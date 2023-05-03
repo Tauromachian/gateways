@@ -18,7 +18,7 @@ services:
     ports:
       - "3000:3000"
     environment:
-      MONGO_URI: mongodb://root:example@mongodb:27017/gateway
+      MONGO_URI: mongodb://root:example@mongodb:27017/gateway?authSource=admin
 
   frontend:
     build:

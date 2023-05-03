@@ -1,3 +1,4 @@
+const Gateway = require("../models/gateway");
 const Peripheral = require("../models/peripheral");
 
 // GET all peripherals
@@ -26,8 +27,18 @@ exports.getPeripheralById = async (req, res, next) => {
 // CREATE a new peripheral
 exports.createPeripheral = async (req, res, next) => {
   try {
+    if (!req.body.gatewayId) {
+      return res.status(400).json({ message: "Missing gatewayId" });
+    }
+
     const peripheral = new Peripheral(req.body);
     await peripheral.save();
+
+    await Gateway.findOneAndUpdate(
+      { _id: req.body.gatewayId },
+      { $push: { peripheralDevices: peripheral._id } }
+    );
+
     res.status(201).json(peripheral);
   } catch (err) {
     next(err);

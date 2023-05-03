@@ -36,12 +36,12 @@ export default {
       links: [
         {
           to: { name: "gateway" },
-          icon: "mdi-domain",
+          icon: "mdi-router",
           text: "Gateways",
         },
         {
           to: { name: "peripheral" },
-          icon: "mdi-view-dashboard",
+          icon: "mdi-devices",
           text: "Peripherals",
         },
       ],

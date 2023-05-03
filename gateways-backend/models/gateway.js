@@ -20,6 +20,12 @@ const gatewaySchema = new mongoose.Schema({
   peripheralDevices: {
     type: [mongoose.Schema.Types.ObjectId],
     ref: "Peripheral",
+    validate: {
+      validator: (peripheralDevices) => {
+        return peripheralDevices.length <= 10;
+      },
+      message: "Only 10 peripherals are allowed",
+    },
   },
 });
 

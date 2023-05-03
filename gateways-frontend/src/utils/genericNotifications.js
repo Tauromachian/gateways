@@ -23,14 +23,14 @@ export const genericNotifications = {
 
   errorInsert: {
     message: "There was a problem inserting",
-    color: "success",
+    color: "error",
   },
   errorDelete: {
     message: "There was a problem deleting",
-    color: "success",
+    color: "error",
   },
   errorUpdate: {
     message: "There was a problem updating",
-    color: "success",
+    color: "error",
   },
 };

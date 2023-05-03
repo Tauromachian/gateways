@@ -85,7 +85,7 @@ export default {
       form: {
         uid: "",
         vendor: "",
-        status: "",
+        status: false,
         gatewayId: "",
       },
     };

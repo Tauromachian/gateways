@@ -12,6 +12,21 @@ const peripheralSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "Gateway",
     required: true,
+    validate: {
+      validator: async (value) => {
+        const peripheralDevices = await mongoose.models.Peripheral.find({
+          gatewayId: value,
+        });
+
+        if (peripheralDevices?.length >= 10) {
+          return false;
+        }
+
+        return true;
+      },
+
+      message: "Only 10 peripherals are allowed",
+    },
   },
 });
 

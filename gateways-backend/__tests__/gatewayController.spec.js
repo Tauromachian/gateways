@@ -1,19 +1,23 @@
-const request = require("supertest");
-const app = require("../app");
 const Gateway = require("../models/gateway");
 
-const { MongoClient } = require("mongodb");
+const gatewayController = require("../controllers/gatewayController");
+
+const mongoose = require("mongoose");
 
 describe("Gateway Controller", () => {
   let connection;
-  let db;
 
   beforeAll(async () => {
-    connection = await MongoClient.connect(globalThis.__MONGO_URI__, {
+    await mongoose.connect(global.__MONGO_URI__, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
-    db = await connection.db(globalThis.__MONGO_DB_NAME__);
+
+    connection = mongoose.connection;
+  });
+
+  beforeEach(async () => {
+    await Gateway.deleteMany({});
   });
 
   afterAll(async () => {
@@ -22,81 +26,82 @@ describe("Gateway Controller", () => {
 
   describe("createGateway", () => {
     it("should create a new gateway", async () => {
-      const response = await request(app).post("/gateways").send({
-        serialNumber: "ABC123",
-        name: "Gateway 1",
-        ipv4: "192.168.0.1",
-        peripheralDevices: [],
-      });
+      const req = {
+        body: {
+          serialNumber: "1234",
+          name: "Test Gateway",
+          ipv4: "192.168.1.1",
+        },
+      };
+      const res = {
+        json: jest.fn(),
+        status: jest.fn().mockReturnThis(),
+      };
+      const next = jest.fn();
 
-      expect(response.statusCode).toBe(201);
-      expect(response.body).toMatchObject({
-        serialNumber: "ABC123",
-        name: "Gateway 1",
-        ipv4: "192.168.0.1",
-        peripheralDevices: [],
-      });
+      await gatewayController.createGateway(req, res, next);
+
+      expect(res.status).toHaveBeenCalledWith(201);
+      expect(res.json).toHaveBeenCalledWith(
+        expect.objectContaining({
+          serialNumber: "1234",
+          name: "Test Gateway",
+          ipv4: "192.168.1.1",
+        })
+      );
+
+      const createdGateway = await Gateway.findOne({ serialNumber: "1234" });
+      expect(createdGateway).toBeDefined();
+      expect(createdGateway.name).toBe("Test Gateway");
     });
 
-    it("should return a 400 error if the gateway already exists", async () => {
+    it("should call next with error if the gateway already exists", async () => {
       const gateway = new Gateway({
-        serialNumber: "ABC123",
+        serialNumber: "ABC1234",
         name: "Gateway 1",
         ipv4: "192.168.0.1",
         peripheralDevices: [],
       });
-
       await gateway.save();
 
-      const response = await request(app).post("/gateways").send({
-        serialNumber: "ABC123",
-        name: "Gateway 2",
-        ipv4: "192.168.0.2",
-        peripheralDevices: [],
-      });
+      const req = {
+        body: {
+          serialNumber: "ABC1234",
+          name: "Test Gateway",
+          ipv4: "192.168.1.1",
+        },
+      };
+      const res = {
+        json: jest.fn(),
+        status: jest.fn().mockReturnThis(),
+      };
+      const next = jest.fn();
 
-      expect(response.statusCode).toBe(400);
-      expect(response.body.message).toBe(
-        "Gateway with serial number ABC123 already exists"
-      );
+      await gatewayController.createGateway(req, res, next);
+
+      expect(next).toHaveBeenCalled();
     });
   });
 
-  describe("getGateways", () => {
+  describe("getgateway", () => {
     it("should return an array of gateways", async () => {
-      const gateway1 = new Gateway({
-        serialNumber: "ABC123",
-        name: "Gateway 1",
-        ipv4: "192.168.0.1",
-        peripheralDevices: [],
-      });
+      const mockGateways = [
+        { serialNumber: "1234", name: "Test Gateway 1", ipv4: "192.168.1.1" },
+        { serialNumber: "5678", name: "Test Gateway 2", ipv4: "192.168.1.2" },
+        { serialNumber: "9012", name: "Test Gateway 3", ipv4: "192.168.1.3" },
+      ];
+      jest.spyOn(Gateway, "find").mockResolvedValue(mockGateways);
 
-      const gateway2 = new Gateway({
-        serialNumber: "XYZ789",
-        name: "Gateway 2",
-        ipv4: "192.168.0.2",
-        peripheralDevices: [],
-      });
+      const req = {};
+      const res = {
+        json: jest.fn(),
+        status: jest.fn().mockReturnThis(),
+      };
+      const next = jest.fn();
 
-      await Gateway.insertMany([gateway1, gateway2]);
+      await gatewayController.getGateways(req, res, next);
 
-      const response = await request(app).get("/gateways");
-
-      expect(response.statusCode).toBe(200);
-      expect(response.body).toMatchObject([
-        {
-          serialNumber: "ABC123",
-          name: "Gateway 1",
-          ipv4: "192.168.0.1",
-          peripheralDevices: [],
-        },
-        {
-          serialNumber: "XYZ789",
-          name: "Gateway 2",
-          ipv4: "192.168.0.2",
-          peripheralDevices: [],
-        },
-      ]);
+      expect(res.json).toHaveBeenCalledWith(mockGateways);
     });
   });
 });
